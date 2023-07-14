@@ -6,7 +6,7 @@ how much was spent at each store on the bill.
 """
 
 
-INPUT_FILE = 'bill1.txt'
+INPUT_FILE = 'bill2.txt'
 
 
 def main():
@@ -33,13 +33,10 @@ def main():
                     else:
                         credit_card_total_per_store[list[i]] = int(list[i + 1])
             
-            print(credit_card_total_per_store)
+        for key in credit_card_total_per_store:
+            print(key + "  $" + str(credit_card_total_per_store[key]))
 
 def add_store_billing(dic, name, number):
-    #print(name, number)
-    #value = int(dic.get(name))
-    #value += number
-    #print(value)
     dic[name] += number
     #return dic[name]
     
