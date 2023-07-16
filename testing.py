@@ -1,11 +1,13 @@
-word = 'Hello'
+word = 'Helloooo'
 letter = 3
 
 
 def deless():
-    if letter in word: return True
+    w = word.find('l',1)
+    print(w)
 
 
 value = deless()
 
-if value: print('Hell')
+
+
