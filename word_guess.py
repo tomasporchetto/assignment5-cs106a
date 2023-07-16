@@ -13,10 +13,8 @@ INITIAL_GUESSES = 8             # Initial number of guesses player starts with
 
 
 def play_game(secret_word):
-    """
-    Add your code (remember to delete the "pass" below)
-    """
-    pass
+    
+    map
 
 
 def get_word():
