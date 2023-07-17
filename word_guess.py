@@ -17,21 +17,24 @@ def insert_value_at_index(string, value, index):
         return string
 
     return string[:index] + value + string[index:]
+    
 
 
 def replace_letter_in_dashes(status, word, letter):
     count = 0
     new_status = ''
     times_letter_in_word = word.count(letter)
-    print(times_letter_in_word)
+    #print(times_letter_in_word)
 
     for i in range(times_letter_in_word):
 
         index_ocurrance = word.find(letter,count)
-        lett = status[index_ocurrance]
-        new_status = insert_value_at_index(status, lett, count) 
-        count += (index_ocurrance + 1)
-        if i == times_letter_in_word: return new_status
+        lett = word[index_ocurrance]
+        count += index_ocurrance
+        new_status = insert_value_at_index(status, lett, index_ocurrance) 
+        
+
+    return new_status
 
 
 def handle_word_status(status,word,correct_letter):
@@ -39,13 +42,12 @@ def handle_word_status(status,word,correct_letter):
     word_to_dashes = ''
     for i in range(len(word)):
         word_to_dashes += '-'
+    
+    new_status = replace_letter_in_dashes(status, word, correct_letter)
 
-    for i in range(len(word)):
+    if new_status == word_to_dashes: return status
 
-        if status == word_to_dashes: return status
-        else:
-            new_status = replace_letter_in_dashes(status, word, correct_letter)
-            return new_status
+    return new_status
     
 
 def letter_checker(status, word, letter):
@@ -100,10 +102,11 @@ def play_game(secret_word):
             elif letter == 'Correct':
                 new_status = handle_word_status(status, secret_word, handdle_letter)
                 status = new_status
+                print('Answer correct')
                 if status == secret_word: 
                     print('You win. The correct word is', status)
                     break
-                
+
         
         
         
