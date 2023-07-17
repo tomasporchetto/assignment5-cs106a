@@ -16,7 +16,7 @@ def insert_value_at_index(string, value, index):
         # Handle invalid index
         return string
 
-    return string[:index] + value + string[index:]
+    return string[:index] + value + string[index + 1:]
     
 
 
@@ -27,12 +27,13 @@ def replace_letter_in_dashes(status, word, letter):
     #print(times_letter_in_word)
 
     for i in range(times_letter_in_word):
-
+        
         index_ocurrance = word.find(letter,count)
         lett = word[index_ocurrance]
-        count += index_ocurrance
-        new_status = insert_value_at_index(status, lett, index_ocurrance) 
-        
+        count += (index_ocurrance + 1)
+        new_status = insert_value_at_index(status, lett, index_ocurrance)
+        status = new_status
+            
 
     return new_status
 
@@ -134,9 +135,9 @@ def get_word():
     if index == 0:
         return 'HAPPY'
     elif index == 1:
-        return 'PYTHON'
-    else:
         return 'COMPUTER'
+    else:
+        return 'PYTHON'
 
 
 def main():
