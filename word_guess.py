@@ -23,12 +23,13 @@ def replace_letter_in_dashes(status, word, letter):
     count = 0
     new_status = ''
     times_letter_in_word = word.count(letter)
+    print(times_letter_in_word)
 
     for i in range(times_letter_in_word):
 
         index_ocurrance = word.find(letter,count)
         lett = status[index_ocurrance]
-        new_status = insert_value_at_index(status, letter, count) 
+        new_status = insert_value_at_index(status, lett, count) 
         count += (index_ocurrance + 1)
         if i == times_letter_in_word: return new_status
 
@@ -72,14 +73,15 @@ def play_game(secret_word):
     
     count = 0
     user_count = 8
+    loop_count = 0
     word_to_dashes = ''
     for i in range(len(secret_word)):
         word_to_dashes += '-'
 
     while True:
         
-        if count == 0: status = word_to_dashes
-
+        if loop_count == 0: status = word_to_dashes
+        loop_count += 1
         value = str(input('Type a single letter here, then press enter: '))
 
         handdle_letter = handdle_letter_input(value)
@@ -88,20 +90,23 @@ def play_game(secret_word):
             user_count = 8
         elif handdle_letter == 'More than 1': print('Guess should only be a single character.')
         elif handdle_letter == '0': print('insert a character')
-
-        letter = letter_checker(status, secret_word, handdle_letter)
-        if letter == 'Incorrect': 
-            count += 1
-            user_count -= 1
-        elif letter == 'Repeated':
-            print('Repeated a letter wich is a correct answer')
-        elif letter == 'Correct':
-            new_status = handle_word_status(status, secret_word, handdle_letter)
-            status = new_status
+        else:
+            letter = letter_checker(status, secret_word, handdle_letter)
+            if letter == 'Incorrect': 
+                count += 1
+                user_count -= 1
+            elif letter == 'Repeated':
+                print('Repeated a letter wich is a correct answer')
+            elif letter == 'Correct':
+                new_status = handle_word_status(status, secret_word, handdle_letter)
+                status = new_status
+                if status == secret_word: 
+                    print('You win. The correct word is', status)
+                    break
+                
         
-        if status == secret_word: 
-            print('You win. The correct word is', status)
-            break
+        
+        
 
         if count == INITIAL_GUESSES:
             print('You lose. The correct word was', secret_word)
