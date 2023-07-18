@@ -13,7 +13,7 @@ INITIAL_GUESSES = 8             # Initial number of guesses player starts with
 
 def insert_value_at_index(string, value, index):
     if index < 0 or index > len(string):
-        # Handle invalid index
+        #Handle invalid index
         return string
 
     return string[:index] + value + string[index + 1:]
@@ -108,10 +108,6 @@ def play_game(secret_word):
                     print('You win. The correct word is', status)
                     break
 
-        
-        
-        
-
         if count == INITIAL_GUESSES:
             print('You lose. The correct word was', secret_word)
             break
@@ -131,13 +127,22 @@ def get_word():
     select a word from a much larger list by reading a list of words
     from the file specified by the constant LEXICON_FILE.
     """
-    index = random.randrange(3)
-    if index == 0:
-        return 'HAPPY'
-    elif index == 1:
-        return 'COMPUTER'
-    else:
-        return 'PYTHON'
+    #create a list then choose a random item
+
+    list = []
+    with open(LEXICON_FILE, 'r') as file:
+
+        for line in file:
+            line = line.strip()
+            list.append(line)
+            
+
+    rand_item = random.sample(list, k=1)
+    stri = ''.join(rand_item)
+    return stri
+
+
+    
 
 
 def main():
